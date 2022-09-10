@@ -12,7 +12,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //Arreglo que alimentará el adaptador para el Spinner
@@ -31,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         RadioButton rb12 = findViewById(R.id.rb12);
         RadioButton rb24 = findViewById(R.id.rb24);
         RadioButton rb36 = findViewById(R.id.rb36);
+        TextView valorCuota = findViewById(R.id.tvcuota);
+        TextView totalDeuda = findViewById(R.id.tvdeuda);
         ImageButton calcular = findViewById(R.id.btncalcular);
         ImageButton limpiar = findViewById(R.id.btnclear);
 
@@ -42,6 +47,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         //Chequear el tipo de crédito
         tipoCredito.setOnItemSelectedListener(this);
+
+        //Evento click del boton limpiar
+        limpiar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                nombre.setText("");
+                fecha.setText("");
+                monto.setText("");
+                valorCuota.setText("");
+                totalDeuda.setText("");
+                nombre.requestFocus(); //Se envia el foco al nombre
+            }
+        });
 
         //Evento click del botón calcular
         calcular.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +93,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                 if (rb36.isChecked()){
                                     ncuotas = 36;
                                 }
-                                double totalDeuda = xmonto + (xmonto * ncuotas * interes);
+                                double xtotalDeuda = xmonto + (xmonto * ncuotas * interes);
+                                double xvalorCuota = xmonto / ncuotas;
+                                DecimalFormat oNumero = new DecimalFormat("###,###,###,###.#");
+                                valorCuota.setText(String.valueOf(oNumero.format(xvalorCuota)));
+                                totalDeuda.setText(String.valueOf(oNumero.format(xtotalDeuda)));
                             } else {
                                 Toast.makeText(getApplicationContext(), "Monto debe estar entre 1 y 100 millones", Toast.LENGTH_SHORT).show();
                             }
