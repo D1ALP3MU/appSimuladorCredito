@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,9 +36,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         RadioButton rb24 = findViewById(R.id.rb24);
         RadioButton rb36 = findViewById(R.id.rb36);
         TextView valorCuota = findViewById(R.id.tvcuota);
-        TextView totalDeuda = findViewById(R.id.tvdeuda);
+        TextView Deuda = findViewById(R.id.tvdeuda);
         ImageButton calcular = findViewById(R.id.btncalcular);
         ImageButton limpiar = findViewById(R.id.btnclear);
+        Switch cuotaManejo = findViewById(R.id.swcuotaManejo);
 
         //Crear el adaptador que contendrá el arreglo tprestamos
         ArrayAdapter adpTprestamo = new ArrayAdapter(this, android.R.layout.simple_list_item_checked,tprestamos);
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 fecha.setText("");
                 monto.setText("");
                 valorCuota.setText("");
-                totalDeuda.setText("");
+                Deuda.setText("");
                 nombre.requestFocus(); //Se envia el foco al nombre
             }
         });
@@ -73,13 +75,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                 double interes = 0;
                                 switch (presSelect){
                                     case "Vivienda":
-                                        interes = 1.5/100;
+                                        interes = 0.015;
                                         break;
                                     case "Educación":
-                                        interes = 1/100;
+                                        interes = 0.01;
                                         break;
                                     case "Libre Inversión":
-                                        interes = 2/100;
+                                        interes = 0.02;
                                         break;
                                 }
                                 double xmonto = parseDouble(monto.getText().toString());
@@ -93,11 +95,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                 if (rb36.isChecked()){
                                     ncuotas = 36;
                                 }
-                                double xtotalDeuda = xmonto + (xmonto * ncuotas * interes);
-                                double xvalorCuota = xmonto / ncuotas;
-                                DecimalFormat oNumero = new DecimalFormat("###,###,###,###.#");
-                                valorCuota.setText(String.valueOf(oNumero.format(xvalorCuota)));
-                                totalDeuda.setText(String.valueOf(oNumero.format(xtotalDeuda)));
+                                double totalDeuda = xmonto + (xmonto * ncuotas * interes);
+                                //Aiganar totalDeuda al objeto referenciado deuda
+                                DecimalFormat valueFormat = new DecimalFormat("###,###,###,###.#");
+                                Deuda.setText(valueFormat.format(totalDeuda));
+                                double xvalorCuota = totalDeuda / ncuotas;
+                                if(cuotaManejo.isChecked()){
+                                    valorCuota.setText(valueFormat.format(xvalorCuota + 10000));
+                                } else {
+                                    valorCuota.setText(valueFormat.format(xvalorCuota));
+                                }
                             } else {
                                 Toast.makeText(getApplicationContext(), "Monto debe estar entre 1 y 100 millones", Toast.LENGTH_SHORT).show();
                             }

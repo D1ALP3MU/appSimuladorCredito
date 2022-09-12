@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:background="#C4E5EA"
+    android:background="#FFFFFF"
     >
 
     <TextView
@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:text="Simulador de Crédito"
         android:gravity="center"
-        android:background="#2196F3"
+        android:background="#00BCD4"
+        android:textColor="#000000"
         />
 
     <LinearLayout
@@ -25,6 +26,7 @@
              android:text="Nombre"
              android:layout_width="60dp"
              android:layout_height="wrap_content"
+             android:textColor="#000000"
              />
         <EditText
             android:id="@+id/etnombre"
@@ -33,12 +35,13 @@
             android:inputType="textPersonName"
             android:hint="Ingrese nombre"
             android:drawableStart="@drawable/ic_baseline_person_24"
-            />
+            android:textColor="#000000"            />
 
         <TextView
             android:text="Fecha"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
+            android:textColor="#000000"
             />
         <EditText
             android:id="@+id/etfecha"
@@ -46,6 +49,7 @@
             android:layout_height="wrap_content"
             android:inputType="date"
             android:hint="Ingrese fecha"
+            android:textColor="#000000"
             />
     </LinearLayout>
 
@@ -56,6 +60,7 @@
             android:text="Monto"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
+            android:textColor="#000000"
             />
         <EditText
             android:id="@+id/etmonto"
@@ -63,12 +68,14 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:hint="Ingrese Monto"
+            android:textColor="#000000"
             />
 
         <TextView
             android:text="Tipo"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
+            android:textColor="#000000"
             />
         <Spinner
             android:id="@+id/sptipo"
@@ -80,6 +87,7 @@
         android:text="Numero de cuotas"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
+        android:textColor="#000000"
         />
     <RadioGroup
         android:layout_width="match_parent"
@@ -89,6 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="12"
+            android:checked="true"
             />
         <RadioButton
             android:id="@+id/rb24"
@@ -114,25 +123,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:text="Valor Cuota"
+            android:text="Valor Cuota:"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:textColor="#000000"
             />
         <TextView
             android:id="@+id/tvcuota"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:textColor="#000000"
             />
 
         <TextView
-            android:text="Total Deuda"
+            android:text="Total Deuda:"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:textColor="#000000"
             />
         <TextView
             android:id="@+id/tvdeuda"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:textColor="#000000"
             />
     </LinearLayout>
 
@@ -146,6 +159,8 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_calculate_24"
+            android:background="#00BCD4"
+            
             />
 
         <ImageButton
@@ -153,6 +168,9 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_cleaning_services_24"
+            android:background="#00BCD4"
+            android:layout_marginLeft="10dp"
+
             />
     </LinearLayout>
 
