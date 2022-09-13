@@ -160,7 +160,6 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_calculate_24"
             android:background="#00BCD4"
-            
             />
 
         <ImageButton
@@ -170,7 +169,6 @@
             android:src="@drawable/ic_baseline_cleaning_services_24"
             android:background="#00BCD4"
             android:layout_marginLeft="10dp"
-
             />
     </LinearLayout>
 
